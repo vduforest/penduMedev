@@ -18,12 +18,13 @@ public class JeuDuPendu {
     private ArrayList<String> lettresProp;
     // " _ _ _ _  A _ X"
     private String motCourant;
+    
     private int nbErreurs;
     // 0
     private int etatPartie;
 
     /**
-     *
+     * Constructeur du Jeu Du Pendu
      * @param motSecret
      * @param lettresProp
      * @param motCourant
@@ -129,14 +130,13 @@ public class JeuDuPendu {
      * @param scanner
      * @return
      */
-    public static String proposerLettre(Scanner scanner){
+    public static String proposerLettre(String input){
         // on demande une lettre au joueur
-        String input;
+        
         
         while (true) {
             try {
-            System.out.print("Entrez une lettre : ");
-            input = scanner.nextLine().trim();
+            
             
             if (input.isEmpty()) {
                 throw new IllegalArgumentException("L'entrée ne peut pas être vide.");
