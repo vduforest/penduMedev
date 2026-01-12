@@ -15,9 +15,9 @@ public class JeuDuPendu {
     // A N I M A U X
     private String motSecret;
     // ["A", "X"]
-    private ArrayList<Character> lettresProp;
+    private ArrayList<String> lettresProp;
     // " _ _ _ _  A _ X"
-    private String etatCourant;
+    private String motCourant;
     private int nbErreurs;
     
     private int etatPartie;
@@ -27,7 +27,7 @@ public class JeuDuPendu {
     public void JeuDuPendu() {
     }
     
-    public static char proposerLettre(Scanner scanner){
+    public static String proposerLettre(Scanner scanner){
         // on demande une lettre au joueur
         String input;
         
@@ -44,13 +44,13 @@ public class JeuDuPendu {
                 throw new IllegalArgumentException("Vous devez entrer exactement une lettre.");
             }
             
-            char lettre = input.charAt(0);
+            char lettreTest = input.charAt(0);
             
-            if (!Character.isLetter(lettre)) {
+            if (!Character.isLetter(lettreTest)) {
                 throw new IllegalArgumentException("Ce n'est pas une lettre.");
             }
             
-            return lettre;
+            return input;
             
             } catch (IllegalArgumentException e) {
             System.out.println("Erreur : " + e.getMessage());
@@ -62,15 +62,28 @@ public class JeuDuPendu {
         
     }
     
-    public void majEtat(char lettreProp){
-        // on regarde si cette lettre est déjà dans la liste des lettres proposees
-        if (!lettresProp.contains(lettreProp)){
+    public void majEtat(String lettreProp){
+        // on regarde si cette lettre est déjà dans la liste des lettres proposees et n'est pas dans le mot secret
+        if (!lettresProp.contains(lettreProp) && !motSecret.contains(lettreProp)){
             nbErreurs+=1;
             //on rajoute la lettre proposée
             lettresProp.add(lettreProp);
         }
         //le fait de donner une lettre déjà proposée ne compte pas comme une erreur en plus
         
+        else if (motSecret.contains(lettreProp)){
+            //maj du mot courant, on revele les lettres egales à la lettre proposee
+            for (char c : motSecret.toCharArray()) {
+                if (lettresProp.contains(c)) {
+                    
+                } else {
+                    
+                }
+            }
+        }
+        
+        
+        //on vérifie si motCourant est égale au mot Secret
         
         
         

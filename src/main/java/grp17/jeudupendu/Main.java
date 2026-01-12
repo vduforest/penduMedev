@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         
         Scanner scanner = new Scanner(System.in);
-        char lettre = proposerLettre(scanner);
+        String lettre = proposerLettre(scanner);
         System.out.println("Vous avez entré la lettre : " + lettre);
         scanner.close();
         
