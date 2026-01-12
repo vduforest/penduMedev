@@ -15,6 +15,9 @@ import java.util.Scanner;
  */
 public class TextInterface {
 
+    /**
+     * Constructeur de TextInterface
+     */
     public TextInterface() {
 
     }

@@ -5,14 +5,14 @@
 package grp17.jeudupendu;
 
 /**
- *
+ * Classe qui permet de modifier les configurations d'une partie, ici le nombre max d'erreurs autorisées.
  * @author rapha
  */
 public class ConfigJeu {
-    private int maxErreurs;
+    private final int maxErreurs;
 
     /**
-     *
+     * Constructeur ConfigJeu
      * @param maxErreurs
      */
     public ConfigJeu(int maxErreurs) {
@@ -20,18 +20,10 @@ public class ConfigJeu {
     }
 
     /**
-     *
-     * @return
+     * Getter maxErreurs
+     * @return maxErreurs
      */
     public int getMaxErreurs() {
         return maxErreurs;
-    }
-
-    /**
-     *
-     * @param maxErreurs
-     */
-    public void setMaxErreurs(int maxErreurs) {
-        this.maxErreurs = maxErreurs;
     }
 }

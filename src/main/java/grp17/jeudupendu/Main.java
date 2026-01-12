@@ -7,11 +7,15 @@ package grp17.jeudupendu;
 import java.util.Scanner;
 
 /**
- *
+ * Classe main qui permet de gérer la simulation d'une partie de jeu
  * @author rapha
  */
 public class Main {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -37,7 +41,7 @@ public class Main {
         // Dans tous les cas on demande le mot secret
         String motSecret = ui.choisirMot(mode, dico);
 
-        // 4️⃣ Paramétrage du nombre maximal d'erreurs
+        //On choisit le nombre d'erreurs max autorisés
         int nbErreurs = 0;
         while (nbErreurs <= 0) {
             System.out.print("Nombre maximal d'erreurs autorisées : ");

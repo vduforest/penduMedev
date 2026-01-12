@@ -4,7 +4,6 @@
 package grp17.jeudupendu;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -12,15 +11,10 @@ import java.util.Scanner;
  */
 public class JeuDuPendu {
 
-    // A N I M A U X
     private String motSecret;
-    // ["A", "X"]
     private ArrayList<String> lettresProp;
-    // " _ _ _ _  A _ X"
     private String motCourant;
-
     private int nbErreurs;
-    // 0
     private int etatPartie;
 
     /**
@@ -39,14 +33,13 @@ public class JeuDuPendu {
         this.nbErreurs = nbErreurs;
         this.etatPartie = etatPartie;
     }
-
+    
     /**
-     *
+     * Constructeur d'une partie à partir d'un mot secret et d'un nbr d'erreurs max
+     * @param motSecret le mot à trouver dans la partie
+     * @param nbErreurs le nombre d'erreurs max
      */
-    public JeuDuPendu() {
-    }
-
-    JeuDuPendu(String motSecret, int nbErreurs) {
+    public JeuDuPendu(String motSecret, int nbErreurs) {
         this.motSecret = motSecret;
         this.lettresProp = new ArrayList<>();
         this.motCourant = "";
@@ -58,15 +51,15 @@ public class JeuDuPendu {
     }
 
     /**
-     *
-     * @return
+     * Getter motSecret
+     * @return motSecret
      */
     public String getMotSecret() {
         return motSecret;
     }
 
     /**
-     *
+     * Setter motSecret
      * @param motSecret
      */
     public void setMotSecret(String motSecret) {
@@ -74,15 +67,15 @@ public class JeuDuPendu {
     }
 
     /**
-     *
-     * @return
+     * Getter lettresProp
+     * @return lettresProp
      */
     public ArrayList<String> getLettresProp() {
         return lettresProp;
     }
 
     /**
-     *
+     * Setter lettresProp
      * @param lettresProp
      */
     public void setLettresProp(ArrayList<String> lettresProp) {
@@ -90,15 +83,15 @@ public class JeuDuPendu {
     }
 
     /**
-     *
-     * @return
+     * getter motCourant
+     * @return motCourant
      */
     public String getMotCourant() {
         return motCourant;
     }
 
     /**
-     *
+     * Setter motCourant
      * @param motCourant
      */
     public void setMotCourant(String motCourant) {
@@ -106,15 +99,15 @@ public class JeuDuPendu {
     }
 
     /**
-     *
-     * @return
+     * Getter NbErreurs
+     * @return nbErreurs
      */
     public int getNbErreurs() {
         return nbErreurs;
     }
 
     /**
-     *
+     * Setter NbErreurs
      * @param nbErreurs
      */
     public void setNbErreurs(int nbErreurs) {
@@ -122,15 +115,15 @@ public class JeuDuPendu {
     }
 
     /**
-     *
-     * @return
+     * Getter EtatPartie
+     * @return etatPartie
      */
     public int getEtatPartie() {
         return etatPartie;
     }
 
     /**
-     *
+     * Setter EtatPartie
      * @param etatPartie
      */
     public void setEtatPartie(int etatPartie) {
@@ -138,12 +131,13 @@ public class JeuDuPendu {
     }
 
     /**
-     *
-     * @param lettre
+     * Méthode qui vérifie la lettre qui a été proposée par le joueur
+     * Elle vérifie sa présence dans le mot secret ou non
+     * @param lettre la lettre proposée
      */
     public void proposerLettre(String lettre) {
 
-        // Sécurité : partie terminée
+        // On vérifie que la partie n'est pas terminée
         if (etatPartie != 0) {
             return;
         }
@@ -151,18 +145,20 @@ public class JeuDuPendu {
         // Normalisation
         lettre = lettre.toUpperCase();
 
-        // Lettre déjà proposée → aucune pénalité
+        // Si la lettre a déjà été proposé, on passe au tour suivant
         if (lettresProp.contains(lettre)) {
             return;
         }
-
+        
+        // Sinon on l'ajoute dans la liste des lettres proposées
         lettresProp.add(lettre);
 
         boolean lettreTrouvee = false;
 
         // StringBuilder pour modifier motCourant
         StringBuilder nouveauMotCourant = new StringBuilder(motCourant);
-
+        
+        //On regarde si la lettre fait partie du mot secret
         for (int i = 0; i < motSecret.length(); i++) {
             if (String.valueOf(motSecret.charAt(i)).equals(lettre)) {
                 nouveauMotCourant.setCharAt(i, lettre.charAt(0));
@@ -173,19 +169,20 @@ public class JeuDuPendu {
         // Mise à jour du mot courant
         motCourant = nouveauMotCourant.toString();
 
-        // Si lettre absente → erreur
+        // Si la lettre est absente alors le joueur a une erreur en plus
         if (!lettreTrouvee) {
             nbErreurs--;
         }
 
-        // Mise à jour de l'état global
+        // Mise à jour de l'état de la partie
         majEtat();
     }
 
     /**
-     * Méthode privée qui permet de 
-     * @param lettreProp
-     * @param maxErreurs
+     * Méthode privée qui permet de mettre à jour l'état de la partie,
+     * Si le nbErreurs est négatif alors la partie est perdue,
+     * Si le le mot courant ne contient plus de "_", alors la partie est gagné
+     * Sinon, la partie continue
      */
     private void majEtat() {
 

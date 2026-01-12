@@ -74,8 +74,15 @@ public class Dictionnaire {
         return mots.get(index);
     }
 
+    /**
+     * Classe publique définie ici pour définir l'exception des dictionnaires
+     */
     public static class DictionnaireException extends Exception {
 
+        /**
+         * 
+         * @param message
+         */
         public DictionnaireException(String message) {
             super(message);
         }
