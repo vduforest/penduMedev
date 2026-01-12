@@ -172,41 +172,4 @@ public class JeuDuPendu {
     public void majEtat(String lettreProp, int maxErreurs){
         ConfigJeu config = new ConfigJeu(maxErreurs);
 
-        // on regarde si cette lettre est déjà dans la liste des lettres proposees et n'est pas dans le mot secret
-        if (!lettresProp.contains(lettreProp) && !motSecret.contains(lettreProp)){
-            nbErreurs+=1;
-            //on rajoute la lettre proposée
-            lettresProp.add(lettreProp);
-        }
-        //le fait de donner une lettre déjà proposée ne compte pas comme une erreur en plus
-        
-        else if (motSecret.contains(lettreProp)){
-            
-            //maj du mot courant, on revele les lettres egales à la lettre proposee
-            for (char c : motSecret.toCharArray()) {
-                if (lettresProp.contains(c)) {
-                    motCourant=" "+c+" ";
-                } else {
-                    motCourant=" _ ";
-                }
-            }
-        }
-        //on vérifie si motCourant est égale au mot Secret
-        if (motCourant.equals(motSecret)){
-            etatPartie=2;
-        }
-        
-        else if(nbErreurs==config.getMaxErreurs()){
-            etatPartie=1;
-        }
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    
 }
