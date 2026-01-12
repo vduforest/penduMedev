@@ -12,10 +12,25 @@ import java.util.Scanner;
  * @author rapha
  */
 public class Main {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        
+        // choix du mode
         Scanner scanner = new Scanner(System.in);
-        String lettre = proposerLettre(scanner);
+        String mode = demanderMode(scanner);
+        System.out.println("Vous avez choisi le mode : " + mode);
+        scanner.close();
+        
+        if ((mode!=1)&&(mode!=0)){
+            System.out.println("erreur pas le bon mode");
+        }
+        
+        // choix de la lettre
+        Scanner scanner1 = new Scanner(System.in);
+        String lettre = proposerLettre(scanner1);
         System.out.println("Vous avez entré la lettre : " + lettre);
         scanner.close();
         

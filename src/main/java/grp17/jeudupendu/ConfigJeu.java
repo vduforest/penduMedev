@@ -10,4 +10,28 @@ package grp17.jeudupendu;
  */
 public class ConfigJeu {
     private int maxErreurs;
+
+    /**
+     *
+     * @param maxErreurs
+     */
+    public ConfigJeu(int maxErreurs) {
+        this.maxErreurs = maxErreurs;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getMaxErreurs() {
+        return maxErreurs;
+    }
+
+    /**
+     *
+     * @param maxErreurs
+     */
+    public void setMaxErreurs(int maxErreurs) {
+        this.maxErreurs = maxErreurs;
+    }
 }
