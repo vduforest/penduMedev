@@ -150,6 +150,13 @@ public class JeuDuPendu {
             return;
         }
         
+        // Si la lettre est invalide, on passe aussi au tour suivant
+        // Vérifier que c'est une seule lettre alphabétique
+        if (lettre.length() != 1 || !lettre.matches("[A-Z]")) {
+            return;
+        }
+
+        
         // Sinon on l'ajoute dans la liste des lettres proposées
         lettresProp.add(lettre);
 
