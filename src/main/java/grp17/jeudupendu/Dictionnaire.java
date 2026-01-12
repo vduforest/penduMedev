@@ -74,7 +74,7 @@ public class Dictionnaire {
         return mots.get(index);
     }
 
-    private static class DictionnaireException extends Exception {
+    public static class DictionnaireException extends Exception {
 
         public DictionnaireException(String message) {
             super(message);
