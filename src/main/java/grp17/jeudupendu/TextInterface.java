@@ -8,19 +8,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * Classe qui gère les différents affichages dans la console
  * @author vdufo
  */
 public class TextInterface {
     
-    private ConfigJeu config; //pour récupérer le nombre d'erreurs max
-    
+    /**
+     * Méthode qui gère l'affichage des différents tours de jeu
+     * @param jeu la partie en cours
+     */
     public void lancerPartie(JeuDuPendu jeu){
         while(jeu.getEtatPartie()==0){
             // Afficher l'état courant du mot 
             afficherEtat(jeu);
-            // Afficher la visualisation
-            afficherDessin(jeu.getErreurRest());
             // Afficher les lettres déjà proposées
             afficherLettresProposees(jeu);
             // Demander la lettre à entrer
@@ -33,15 +33,19 @@ public class TextInterface {
         afficherFin(jeu);
     }
     
+    /**
+     * Méthode qui affiche l'état courant du mot, exemple : "_A__E"
+     * @param jeu la partie en cours
+     */
     public void afficherEtat(JeuDuPendu jeu){
         String etat = jeu.getEtatCourant();
         System.out.println("Mot à deviner : "+etat);
     }
     
-    public void afficherDessin(int erreurs){
-        
-    }
-    
+    /**
+     * Méthode qui permet d'afficher les différentes lettres
+     * @param jeu la partie en cours
+     */
     public void afficherLettresProposees(JeuDuPendu jeu){
         ArrayList<char> lettresProp = jeu.getLettresProp();
         String aAfficher = "Lettres déjà proposées : ";
@@ -51,6 +55,10 @@ public class TextInterface {
         System.out.println(aAfficher);
     }
     
+    /**
+     * Méthode qui demande au joueur quel lettre il souhaite essayé dans le mot
+     * @return la lettre rentré dans la console par le joueur
+     */
     public char demanderLettre() {
     while (true) {
         Scanner scanner = new Scanner(System.in);
@@ -66,6 +74,10 @@ public class TextInterface {
         }
     }
     
+    /**
+     * Méthode qui permet d'afficher le message de fin de partie, selon la victoire ou la défaite
+     * @param jeu la partie qui vient de se terminer
+     */
     public void afficherFin(JeuDuPendu jeu){
         int etat = jeu.getEtatPartie();
         if (etat==1){
@@ -77,6 +89,14 @@ public class TextInterface {
         }
     }
     
+    /**
+     * Méthode qui permet de choisir le mot à deviner
+     * Si la partie se joue à un joueur, on le tire aléatoirement d'un dictionnaire,
+     * si la partie se joue à 2 joueurs, c'est un des deux joueurs qui choisit le mot
+     * @param mode 1 si le joueur joue tout seul, 2 si la partie se fait à 2
+     * @param dico le dictionnaire des mots
+     * @return le mot choisi 
+     */
     public String choisirMot(int mode, Dictionnaire dico) {
     if (mode == 1) {
         return dico.getMotAleatoire();
