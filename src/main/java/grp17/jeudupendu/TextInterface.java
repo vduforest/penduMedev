@@ -4,6 +4,7 @@
  */
 package grp17.jeudupendu;
 
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,12 +48,31 @@ public class TextInterface {
      * @param jeu la partie en cours
      */
     public void afficherLettresProposees(JeuDuPendu jeu){
-        ArrayList<char> lettresProp = jeu.getLettresProp();
+        ArrayList<String> lettresProp = jeu.getLettresProp();
         String aAfficher = "Lettres déjà proposées : ";
-        for (char lettre:lettresProp){
+        for (String lettre:lettresProp){
             aAfficher += "lettre, ";
         }
         System.out.println(aAfficher);
+    }
+    
+    /**
+     * Méthode qui permet de demander à l'utilisateur si il veut jouer seul contre l'ordinateur ou à 2
+     * @return le choix du mode
+     */
+    public int demanderMode(){
+        while(true){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Voulez-vous jouer à 1 ou 2 joueurs ?");
+            String inputStr = scanner.nextLine();
+            int input = Integer.parseInt(inputStr);
+            
+            if ((input != 1)||(input != 2)){
+            System.out.println("Voulez-vous jouer à 1 ou 2 joueurs ?");
+            continue;
+            }
+            return input;
+        }
     }
     
     /**
