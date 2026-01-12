@@ -171,5 +171,5 @@ public class JeuDuPendu {
      */
     public void majEtat(String lettreProp, int maxErreurs){
         ConfigJeu config = new ConfigJeu(maxErreurs);
-
+    }
 }
