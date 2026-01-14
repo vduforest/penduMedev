@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JeuDuPendu" default="javadoc" basedir=".">
+    <description>This is a simple test project.</description>
+    
+    <property name="dist.location" location="dist"/>
+    <property name="jar.name" value="JeuDuPendu"/>
+
+    <target name="checkDependencies"
+        description="Check if dependencies are satisfied">
+            <property name="main.location" location="src/main/java"/>
+            <property name="test.location" location="src/test/java"/>
+            <property name="classes.location" location="target/classes"/>
+            <property name="test.classes.location" location="target/test-classes"/>
+
+            <echo message="Source directory is ${src.location}"/>
+            <echo message="Classes directory is ${classes.location}"/>
+        
+        <condition property="src.available">
+            <and>
+                <available file="${main.location}" type="dir"/>
+                <available file="${classes.location}" type="dir"/>
+                <available file="${test.classes.location}" type="dir"/>
+            </and>
+        </condition>
+        
+        <mkdir dir="${dist.location}"/>
+    </target>
+
+    <path id="test.classpath">
+        <pathelement path="${classes.location}"/>
+        <pathelement path="${test.classes.location}"/>
+        <fileset dir="lib" includes="*.jar"/>
+    </path>
+    
+    <target name="build" description="Build the application"
+        depends="checkDependencies" if="src.available">
+        <echo message="Building application..."/>
+
+        <javac srcdir="${main.location}" destdir="${classes.location}"
+            includeAntRuntime="false"/>
+        
+        <echo message="Done!"/>
+    </target>
+
+    <target name="build.tests" description="Build the tests" depends="build">
+        <mkdir dir="target/test-classe"/>
+        <javac srcdir="${test.location}" destdir="target/test-classe" includeantruntime="false">
+            <classpath refid="test.classpath"/>
+        </javac>
+
+    </target>
+
+    <target name="jar" description="Creation du jar exécutable" depends="build">
+        <echo message="Création du jar..."/>
+        <jar destfile="${dist.location}/${jar.name}" basedir="${classes.location}">
+            <manifest>
+                <attribute name="Main-Class" value="jeudupendu.JeuDuPendu"/>
+            </manifest>
+        </jar>
+        <echo message="JAR créé dans ${dist.location}."/>
+
+    </target>
+
+    <target name="javadoc" description="Generation de la javadoc" depends="build">
+        <echo message="Génération de la javadoc..."/>
+        <javadoc packagenames="jeudupendu" sourcepath="src/main/java/grp17" destdir="dist/javadoc" author="true" version="true" use="true">
+            <classpath>
+                <pathelement path="${classes.location}"/>
+            </classpath>
+        </javadoc>
+        <echo message="Javadoc générée dans dist/javadoc."/>
+    </target>
+        
+    
+
+</project>
